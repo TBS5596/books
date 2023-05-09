@@ -1,7 +1,9 @@
 package com.book.bookshelf.api;
 
+import com.book.bookshelf.models.book.Book;
 import com.book.bookshelf.models.shelf.Shelf;
 import com.book.bookshelf.models.shelf.ShelfService;
+import com.book.bookshelf.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,16 +41,16 @@ public class ShelfEndpoint {
     }
 
     // get shelf entries by user
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<Shelf>> getShelfEntriesByUser(@PathVariable Long id) {
-        List<Shelf> shelfEntries = shelfService.getByUser(id);
+    @GetMapping("/user/{user}")
+    public ResponseEntity<List<Shelf>> getShelfEntriesByUser(@RequestBody User user) {
+        List<Shelf> shelfEntries = shelfService.getByUser(user);
         return new ResponseEntity<>(shelfEntries, HttpStatus.OK);
     }
 
     // get shelf entries by book
-    @GetMapping("/book/{id}")
-    public ResponseEntity<List<Shelf>> getShelfEntriesByBook(@PathVariable Long id) {
-        List<Shelf> shelfEntries = shelfService.getByBook(id);
+    @GetMapping("/book/{book}")
+    public ResponseEntity<List<Shelf>> getShelfEntriesByBook(@RequestBody Book book) {
+        List<Shelf> shelfEntries = shelfService.getByBook(book);
         return new ResponseEntity<>(shelfEntries, HttpStatus.OK);
     }
 

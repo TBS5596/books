@@ -1,7 +1,9 @@
 package com.book.bookshelf.api;
 
+import com.book.bookshelf.models.forum.Forum;
 import com.book.bookshelf.models.message.Message;
 import com.book.bookshelf.models.message.MessageService;
+import com.book.bookshelf.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,24 +41,24 @@ public class MessageEndpoint {
     }
 
     // get all messages by user
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<Message>> getAllMessagesByUser(@PathVariable Long userId) {
-        List<Message> messages = messageService.getMessagesByUser(userId);
+    @GetMapping("/user/{user}")
+    public ResponseEntity<List<Message>> getAllMessagesByUser(@RequestBody User user) {
+        List<Message> messages = messageService.getMessagesByUser(user);
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 
     // get all messages by forum
-    @GetMapping("/forum/{id}")
-    public ResponseEntity<List<Message>> getAllMessagesByForum(@PathVariable Long forumId) {
-        List<Message> messages = messageService.getMessagesForForum(forumId);
+    @GetMapping("/forum/{forum}")
+    public ResponseEntity<List<Message>> getAllMessagesByForum(@RequestBody Forum forum) {
+        List<Message> messages = messageService.getMessagesForForum(forum);
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 
     // get all messages by user and forum
-    @GetMapping("/forumuser/{forumId}/{userId}")
-    public ResponseEntity<List<Message>> getAllUserForumMessages(@PathVariable Long forumId,
-                                                                 @PathVariable Long userId) {
-        List<Message> messages = messageService.getMessagesByUserAndForum(userId, forumId);
+    @GetMapping("/forumuser/{forum}/{user}")
+    public ResponseEntity<List<Message>> getAllUserForumMessages(@RequestBody Forum forum,
+                                                                 @RequestBody User user) {
+        List<Message> messages = messageService.getMessagesByUserAndForum(user, forum);
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 

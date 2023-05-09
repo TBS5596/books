@@ -1,5 +1,7 @@
 package com.book.bookshelf.models.shelf;
 
+import com.book.bookshelf.models.book.Book;
+import com.book.bookshelf.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +22,12 @@ public class ShelfService {
         return shelfRepository.findAll();
     }
 
-    public List<Shelf> getByBook(Long id) {
-        return shelfRepository.findByBook(id);
+    public List<Shelf> getByBook(Book book) {
+        return shelfRepository.findByBook(book);
     }
 
-    public List<Shelf> getByUser(Long id) {
-        return shelfRepository.findByUser(id);
+    public List<Shelf> getByUser(User user) {
+        return shelfRepository.findByUser(user);
     }
 
     public Shelf getById(Long id) {

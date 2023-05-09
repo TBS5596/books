@@ -1,5 +1,7 @@
 package com.book.bookshelf.models.message;
 
+import com.book.bookshelf.models.forum.Forum;
+import com.book.bookshelf.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,16 +26,16 @@ public class MessageService {
         return messageRepository.findById(id).orElse(null);
     }
 
-    public List<Message> getMessagesByUser(Long id) {
-        return messageRepository.findByUser(id);
+    public List<Message> getMessagesByUser(User user) {
+        return messageRepository.findByUser(user);
     }
 
-    public List<Message> getMessagesForForum(Long id) {
-        return messageRepository.findByForum(id);
+    public List<Message> getMessagesForForum(Forum forum) {
+        return messageRepository.findByForum(forum);
     }
 
-    public List<Message> getMessagesByUserAndForum(Long user_id, Long forum_id) {
-        return messageRepository.findByUserAndForum(user_id, forum_id);
+    public List<Message> getMessagesByUserAndForum(User user, Forum forum) {
+        return messageRepository.findByUserAndForum(user, forum);
     }
 
     public void deleteMessage(Long id) {

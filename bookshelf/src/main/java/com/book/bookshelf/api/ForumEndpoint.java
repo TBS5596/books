@@ -1,7 +1,7 @@
 package com.book.bookshelf.api;
 
+import com.book.bookshelf.models.book.Book;
 import com.book.bookshelf.models.forum.Forum;
-import com.book.bookshelf.models.forum.ForumRepository;
 import com.book.bookshelf.models.forum.ForumService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +40,9 @@ public class ForumEndpoint {
     }
 
     // get forums by book
-    @GetMapping("/book/{id}")
-    public ResponseEntity<List<Forum>> getForumByBook(@PathVariable Long id) {
-        List<Forum> forums = forumService.getForumByBook(id);
-        return new ResponseEntity<>(forums, HttpStatus.OK);
-    }
-
-    // get forums by user
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<Forum>> getForumByUser(@PathVariable Long id) {
-        List<Forum> forums = forumService.getForumByUser(id);
+    @GetMapping("/book/{book}")
+    public ResponseEntity<List<Forum>> getForumByBook(@RequestBody Book book) {
+        List<Forum> forums = forumService.getForumByBook(book);
         return new ResponseEntity<>(forums, HttpStatus.OK);
     }
 

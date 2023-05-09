@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/users")
 public class UserEndpoint {
-
     @Autowired
     private final UserService userService;
 

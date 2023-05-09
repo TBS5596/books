@@ -1,5 +1,6 @@
 package com.book.bookshelf.models.forum;
 
+import com.book.bookshelf.models.book.Book;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,8 @@ public class ForumService {
         return forumRepository.findById(id).orElse(null);
     }
 
-    public List<Forum> getForumByUser(Long userId) {
-        return forumRepository.findByUser(userId);
-    }
-
-    public List<Forum> getForumByBook(Long bookId) {
-        return forumRepository.findByBook(bookId);
+    public List<Forum> getForumByBook(Book book) {
+        return forumRepository.findByBook(book);
     }
 
     public void deleteForumById(Long id) {

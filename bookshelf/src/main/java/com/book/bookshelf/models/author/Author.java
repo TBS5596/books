@@ -2,7 +2,6 @@ package com.book.bookshelf.models.author;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Getter
