@@ -12,11 +12,11 @@ Start the server using mvn spring-boot:run.
 **Usage**
 
 To use the application, follow these steps:
-Navigate to the homepage of the application.
-Enter the ISBN of the book you want to add to your collection.
-If the book is not already in the database, the application will look up its details via the OpenLibrary API and add it to the database.
-The application will bind the user to the book through the shelf entity.
-Next time a different user looks up the book, if that book's details were already in the database, the system will bind that user to the book through the shelf entity.
+1. Navigate to the homepage of the application.
+2. Enter the ISBN of the book you want to add to your collection.
+3. If the book is not already in the database, the application will look up its details via the OpenLibrary API and add it to the database.
+4. The application will bind the user to the book through the shelf entity.
+5. Next time a different user looks up the book, if that book's details were already in the database, the system will bind that user to the book.
 
 **API Documentation**
 
