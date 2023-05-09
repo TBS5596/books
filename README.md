@@ -17,6 +17,7 @@ If you encounter any issues when using the application, please report them on th
 
 The project is licensed under the MIT License. See the LICENSE file for more information.
 
+
 # API Documentation
 
 ## User API
