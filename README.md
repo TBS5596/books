@@ -20,7 +20,7 @@ Next time a different user looks up the book, if that book's details were alread
 
 **API Documentation**
 
-The API documentation is available at https://docs.google.com/document/d/1m_rXsYXA3AowwNxJtpLkQSRy7jrKd-lKGvH5S296KTM/edit?usp=sharing. The documentation was generated using the Springfox Swagger tool and includes information about all the endpoints available in the API, as well as example requests and responses.
+The API documentation is available at https://docs.google.com/document/d/1m_rXsYXA3AowwNxJtpLkQSRy7jrKd-lKGvH5S296KTM/edit?usp=sharing.
 
 **Issues**
 
@@ -28,7 +28,7 @@ If you encounter any issues when using the application, please report them on th
 
 **Code Samples**
 
-Code samples for using the API are available at https://docs.google.com/document/d/1y774gMZr1Ck09rDIlEtuPfUqkK9Kii8jF_0rLXsQXyA/edit?usp=sharing. The examples include code in Python, Java, and JavaScript.
+Code samples for using the API are available at https://docs.google.com/document/d/1y774gMZr1Ck09rDIlEtuPfUqkK9Kii8jF_0rLXsQXyA/edit?usp=sharing.
 
 **License**
 
