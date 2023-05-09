@@ -27,7 +27,7 @@ public class BookEndpoint {
     }
 
     // get a specific book by id
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
@@ -76,7 +76,7 @@ public class BookEndpoint {
     }
 
     // delete a book
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBookById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -36,5 +36,4 @@ public class Message {
     @Column(name = "sent", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime created = LocalDateTime.now();
-
 }

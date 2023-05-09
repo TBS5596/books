@@ -12,6 +12,10 @@ public class ShelfService {
     @Autowired
     private ShelfRepository shelfRepository;
 
+    public Shelf addShelfEntry(Shelf entry) {
+        return shelfRepository.save(entry);
+    }
+
     public List<Shelf> getAllShelfEntries() {
         return shelfRepository.findAll();
     }

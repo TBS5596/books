@@ -17,6 +17,13 @@ public class ShelfEndpoint {
     @Autowired
     private ShelfService shelfService;
 
+    // add a shelf entry
+    @PostMapping("/add")
+    public ResponseEntity<Shelf> addAShelfEntry(@RequestBody Shelf entry) {
+        Shelf newEntry = shelfService.addShelfEntry(entry);
+        return new ResponseEntity<>(newEntry, HttpStatus.CREATED);
+    }
+
     // get all the shelf entries
     @GetMapping("/all")
     public ResponseEntity<List<Shelf>> getAllShelfEntries() {
@@ -25,7 +32,7 @@ public class ShelfEndpoint {
     }
 
     // get a specific shelves
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Shelf> getAShelfEntry(@PathVariable Long id) {
         Shelf shelfEntry = shelfService.getById(id);
         return new ResponseEntity<>(shelfEntry, HttpStatus.OK);
@@ -46,7 +53,7 @@ public class ShelfEndpoint {
     }
 
     // delete a specific shelf entry
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Shelf> deleteAShelfEntry(@PathVariable Long id) {
         shelfService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
