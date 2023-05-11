@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class BookshelfApplication {
+public class MainApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookshelfApplication.class, args);
+		SpringApplication.run(MainApp.class, args);
 	}
 
 }

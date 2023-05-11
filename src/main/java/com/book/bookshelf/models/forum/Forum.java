@@ -26,9 +26,8 @@ public class Forum {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @Column(name = "admin")
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "admin")
     private User user;
 
     @Column(name = "title")

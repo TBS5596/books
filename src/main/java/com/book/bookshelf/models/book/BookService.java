@@ -52,16 +52,23 @@ public class BookService {
 
     public Book addBook(Book book) {
         String bookInfoAsString = openLibRequest.getObjectAsString(Constants.get_book_by_isbn_url + book.getIsbn_13().get(0) + ".json");
+        // check if a response was given the api endpoint
         if (bookInfoAsString != null) {
             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
             // transform the book info string into a book info object
             Book bookInfo = gson.fromJson(bookInfoAsString, Book.class);
+            if (bookInfo == null) {
+                book.setDescription("OpenLibrary API cannot find information about the book. Manually insert book " +
+                        "information");
+                return bookRepository.save(book);
+            }
             // get works information
             String works_ext_url = bookInfo.getWorks().get(0).getKey();
             String worksInfoAsString =
                     openLibRequest.getObjectAsString(Constants.openlibrary_url + works_ext_url +
                             ".json");
             WorkInfo workInfo = gson.fromJson(worksInfoAsString, WorkInfo.class);
+            // create a list of book authors
             List<Author> authors = new ArrayList<Author>();
             if (workInfo.getAuthors() != null) {
                 for (WorkInfo.Author author : workInfo.getAuthors()) {
@@ -72,9 +79,8 @@ public class BookService {
                 for (Author author : authors) {
                     // check if the author already exists
                     Optional<Author> authorOptional = authorRepository.findByKey(author.getKey());
-                    if (authorOptional.isPresent()) {
-                        author = authorOptional.get();
-                    } else {
+                    if (authorOptional.isPresent()) author = authorOptional.get();
+                    else {
                         // get information about the new author
                         String AuthorInfoAsString =
                                 openLibRequest.getObjectAsString(Constants.openlibrary_url + author.getKey() + ".json");
@@ -98,9 +104,7 @@ public class BookService {
             bookInfo.setTitle(workInfo.getTitle());
             // save to database
             return bookRepository.save(bookInfo);
-        } else {
-            return new Book();
-        }
+        } else return null;
     }
 
     public void deleteBookById(Long id) {
