@@ -57,8 +57,7 @@ public class Book {
     @Column(name = "covers")
     private List<Integer> covers;
 
-    public Book(String title, List<String> isbn_13) {
-        this.title = title;
+    public Book(List<String> isbn_13) {
         this.isbn_13 = isbn_13;
     }
 }

@@ -1,6 +1,13 @@
 package com.book.bookshelf.models.user;
 
+import com.book.bookshelf.models.forum.Forum;
+import com.book.bookshelf.models.forum.ForumRepository;
+import com.book.bookshelf.models.message.Message;
+import com.book.bookshelf.models.message.MessageRepository;
+import com.book.bookshelf.models.shelf.Shelf;
+import com.book.bookshelf.models.shelf.ShelfRepository;
 import com.book.bookshelf.models.token.Token;
+import com.book.bookshelf.models.token.TokenRepository;
 import com.book.bookshelf.models.token.TokenService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -28,6 +35,14 @@ public class UserService implements UserDetailsService {
     private final TokenService tokenService;
 
     private final static String USER_NOT_FOUND_MSG = "user with username %s not found";
+    @Autowired
+    private TokenRepository tokenRepository;
+    @Autowired
+    private MessageRepository messageRepository;
+    @Autowired
+    private ShelfRepository shelfRepository;
+    @Autowired
+    private ForumRepository forumRepository;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -90,6 +105,20 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUserById(Long id) {
+        // delete all data associated to the user
+        List<Token> userTokens = tokenRepository.findByUser(getUserById(id));
+        for(Token token : userTokens) tokenRepository.deleteById(token.getId());
+        List<Message> userMessages = messageRepository.findByUser(getUserById(id));
+        if (userMessages != null) for(Message message : userMessages) messageRepository.deleteById(message.getId());
+        List<Shelf> userShelfEntries = shelfRepository.findByUser(getUserById(id));
+        if (userShelfEntries != null) for(Shelf entry : userShelfEntries) shelfRepository.deleteById(entry.getId());
+        // change forum administrators
+        List<Forum> userForums = forumRepository.findByUser(getUserById(id));
+        if (userForums != null) {
+            for (Forum forum : userForums) forum.setUser(getUserById(0L));
+            forumRepository.saveAll(userForums);
+        }
+        // delete user
         userRepository.deleteById(id);
     }
 }

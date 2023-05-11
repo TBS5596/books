@@ -26,7 +26,7 @@ public class Token {
     private LocalDateTime expiresAt;
     @Column(name = "confirmedAt")
     private LocalDateTime confirmedAt;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 

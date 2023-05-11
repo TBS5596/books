@@ -3,6 +3,7 @@ package com.book.bookshelf.api;
 import com.book.bookshelf.models.book.Book;
 import com.book.bookshelf.models.forum.Forum;
 import com.book.bookshelf.models.forum.ForumService;
+import com.book.bookshelf.models.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,9 +41,16 @@ public class ForumEndpoint {
     }
 
     // get forums by book
-    @GetMapping("/book/{book}")
+    @GetMapping("/book/")
     public ResponseEntity<List<Forum>> getForumByBook(@RequestBody Book book) {
         List<Forum> forums = forumService.getForumByBook(book);
+        return new ResponseEntity<>(forums, HttpStatus.OK);
+    }
+
+    // get forums administrated by user
+    @GetMapping("/user/")
+    public ResponseEntity<List<Forum>> getForumByUser(@RequestBody User user) {
+        List<Forum> forums = forumService.getForumByUser(user);
         return new ResponseEntity<>(forums, HttpStatus.OK);
     }
 

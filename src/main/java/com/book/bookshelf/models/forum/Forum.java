@@ -1,6 +1,7 @@
 package com.book.bookshelf.models.forum;
 
 import com.book.bookshelf.models.book.Book;
+import com.book.bookshelf.models.user.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,11 @@ public class Forum {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
+
+    @Column(name = "admin")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "title")
     private String title;
