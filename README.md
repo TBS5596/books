@@ -232,8 +232,6 @@ Returns book details:
 Method: `GET` | Endpoint: `/api/books/isbn/[insert isbn here]`
 ### Get books title
 Method: `GET` | Endpoint: `/api/books/title/[insert title here]`
-### Get books by Author
-Method: `GET` | Endpoint: `/api/books/author/[insert author here]`
 ### Get books by Subject
 Method: `GET` | Endpoint: `/api/books/subject/[insert subject here]`
 ### Delete a Books

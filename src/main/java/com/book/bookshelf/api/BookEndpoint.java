@@ -40,13 +40,6 @@ public class BookEndpoint {
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    // get a specific books by author
-    @GetMapping("/author/{author}")
-    public ResponseEntity<List<Book>> getBooksByAuthor(@PathVariable String author) {
-        List<Book> books = bookService.getBooksByAuthor(author);
-        return new ResponseEntity<>(books, HttpStatus.OK);
-    }
-
     // get a specific books by subject
     @GetMapping("/subject/{subject}")
     public ResponseEntity<List<Book>> getBooksBySubject(@PathVariable String subject) {
