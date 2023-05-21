@@ -28,7 +28,7 @@ public class AuthorEndpoint {
     }
 
     // get a specific author by id
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
         Author author = authorService.getAuthorById(id);
         return new ResponseEntity<>(author, HttpStatus.OK);
